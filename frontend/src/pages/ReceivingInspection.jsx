@@ -129,6 +129,7 @@ export default function ReceivingInspection({ setCurrentPage }) {
             handleSubmit={handleSubmit}
             items={items}
             calculateFailureRate={calculateFailureRate}
+            setShowItemForm={setShowItemForm}
           />
           
           {/* Item Form Modal */}

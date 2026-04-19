@@ -6,7 +6,8 @@ export function ReceivingInspectionForm({
   isSubmitting, 
   handleSubmit, 
   items,
-  calculateFailureRate 
+  calculateFailureRate,
+  setShowItemForm 
 }) {
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: "800px", margin: "0 auto" }}>
