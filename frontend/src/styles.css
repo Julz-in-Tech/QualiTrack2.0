@@ -1,0 +1,447 @@
+@import "tailwindcss" source(none);
+
+@source "../index.html";
+@source "./**/*.{js,jsx,ts,tsx}";
+
+@theme inline {
+  --font-sans: "Segoe UI", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-foreground: var(--brand-foreground);
+}
+
+:root {
+  --background: oklch(100% 0 0);
+  --foreground: oklch(21% 0.034 264.665);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(21% 0.034 264.665);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(21% 0.034 264.665);
+  --primary: oklch(62.3% 0.214 259.815);
+  --primary-foreground: oklch(98.5% 0 0);
+  --secondary: oklch(96.7% 0.003 264.542);
+  --secondary-foreground: oklch(27.8% 0.033 256.848);
+  --muted: oklch(96.7% 0.003 264.542);
+  --muted-foreground: oklch(55.1% 0.027 264.364);
+  --accent: oklch(96.7% 0.003 264.542);
+  --accent-foreground: oklch(27.8% 0.033 256.848);
+  --destructive: oklch(63.7% 0.237 25.331);
+  --destructive-foreground: oklch(98.5% 0 0);
+  --border: oklch(92.8% 0.006 264.531);
+  --input: oklch(100% 0 0);
+  --ring: oklch(62.3% 0.214 259.815);
+  --brand: oklch(62.3% 0.214 259.815);
+  --brand-deep: oklch(42.4% 0.199 265.638);
+  --brand-foreground: oklch(98.5% 0 0);
+  --brand-color: var(--brand);
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background:
+      radial-gradient(circle at top left, color-mix(in oklab, var(--brand) 14%, white) 0%, transparent 32%),
+      linear-gradient(180deg, color-mix(in oklab, var(--muted) 55%, white) 0%, var(--background) 42%);
+    color: var(--foreground);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .app-shell {
+    min-height: 100vh;
+    padding: 0 0 2rem;
+  }
+
+  .app-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--border) 85%, white);
+    background: color-mix(in oklab, var(--background) 82%, white);
+    backdrop-filter: blur(18px);
+  }
+
+  .user-badge {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .user-badge strong {
+    font-size: 0.95rem;
+  }
+
+  .user-badge span {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+  }
+
+  .secondary-button,
+  .nav-button,
+  .primary-button {
+    border: none;
+    cursor: pointer;
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease,
+      opacity 160ms ease;
+  }
+
+  .secondary-button {
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--background) 80%, white);
+    color: var(--foreground);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  .secondary-button:hover,
+  .nav-button:hover,
+  .primary-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .hero {
+    padding: 1.5rem;
+  }
+
+  .hero-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(135deg, color-mix(in oklab, var(--brand) 90%, white), color-mix(in oklab, var(--brand-deep) 88%, black));
+    color: var(--brand-foreground);
+    box-shadow: 0 24px 60px rgba(30, 64, 175, 0.2);
+  }
+
+  .hero-card h1 {
+    margin: 0.35rem 0 0.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.05;
+  }
+
+  .hero-card p {
+    max-width: 60ch;
+    margin: 0;
+    color: color-mix(in oklab, var(--brand-foreground) 82%, white);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    background: color-mix(in oklab, white 16%, transparent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    align-items: start;
+  }
+
+  .content-grid > :only-child {
+    grid-column: 1 / -1;
+  }
+
+  .panel {
+    border-radius: 1.5rem;
+    background: color-mix(in oklab, var(--background) 86%, white);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.09);
+    border: 1px solid color-mix(in oklab, var(--border) 88%, white);
+    overflow: hidden;
+  }
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  
+  .panel-header h2,
+  .panel-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .subtle {
+    margin: 0.3rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.92rem;
+  }
+
+  .quantity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.9rem;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .quantity-chip {
+    padding: 1rem 1.1rem;
+    border-radius: 1.15rem;
+    background: color-mix(in oklab, var(--muted) 55%, white);
+    border: 1px solid color-mix(in oklab, var(--border) 82%, white);
+  }
+
+  .quantity-chip strong {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  .quantity-chip span {
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+  }
+
+  .quantity-chip.received strong {
+    color: var(--brand-deep);
+  }
+
+  .quantity-chip.passed strong {
+    color: color-mix(in oklab, var(--brand) 80%, black);
+  }
+
+  .quantity-chip.failed strong {
+    color: var(--destructive);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .field.full,
+  .actions.full {
+    grid-column: 1 / -1;
+  }
+
+  .field label {
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    min-height: 2.85rem;
+    padding: 0.8rem 0.95rem;
+    border-radius: 0.95rem;
+    border: 1px solid color-mix(in oklab, var(--border) 86%, white);
+    background: color-mix(in oklab, var(--background) 76%, white);
+    color: var(--foreground);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  .field textarea {
+    min-height: 8rem;
+    resize: vertical;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: color-mix(in oklab, var(--brand) 65%, white);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--brand) 16%, white);
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .primary-button {
+    padding: 0.9rem 1.3rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--brand-deep), var(--brand));
+    color: var(--brand-foreground);
+    box-shadow: 0 18px 40px rgba(59, 130, 246, 0.22);
+  }
+
+  .list-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  .inspection-item {
+    padding: 1rem 1.05rem;
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--background) 76%, white);
+    border: 1px solid color-mix(in oklab, var(--border) 85%, white);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  }
+
+  .inspection-details {
+    display: grid;
+    gap: 0.35rem;
+    color: var(--muted-foreground);
+    font-size: 0.88rem;
+  }
+
+  .empty-state {
+    padding: 1.2rem;
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--muted) 48%, white);
+    color: var(--muted-foreground);
+    text-align: center;
+  }
+
+  .message {
+    margin: 0 1.5rem 1.5rem;
+    padding: 0.95rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid transparent;
+    font-size: 0.9rem;
+  }
+
+  .message.success {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.18);
+    color: var(--brand-deep);
+  }
+
+  .message.error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.18);
+    color: var(--destructive);
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.28rem 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .status-pill.completed,
+  .status-pill.accepted {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--brand-deep);
+  }
+
+  .status-pill.rejected,
+  .status-pill.failed {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--destructive);
+  }
+
+  .status-pill.pending,
+  .status-pill.open {
+    background: rgba(245, 158, 11, 0.18);
+    color: #92400e;
+  }
+}
+
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-topbar,
+  .hero,
+  .content-grid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .panel-header,
+  .quantity-grid,
+  .form-grid,
+  .list-card {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

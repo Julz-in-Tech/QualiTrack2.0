@@ -1,0 +1,40 @@
+{
+  "name": "qualitrack-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "React frontend for the QualiTrack Quality Control Management System",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/preview.mjs",
+    "preview": "node scripts/preview.mjs"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@tanstack/react-router": "^1.45.13",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "firebase": "^12.12.0",
+    "lucide-react": "^0.376.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.72.1",
+    "sonner": "^1.4.41",
+    "tailwind-merge": "^2.3.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-react": "^7.28.5",
+    "autoprefixer": "^10.4.19",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^4.1.4"
+  }
+}
