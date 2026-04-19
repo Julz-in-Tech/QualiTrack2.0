@@ -203,10 +203,8 @@ export function useReceivingInspection() {
           text: `Receiving inspection saved successfully. Overall failure rate: ${calculateFailureRate()}%. Redirecting to NCR form for failed items...`,
         });
 
-        // Navigate to NCR form after a short delay
-        setTimeout(() => {
-          setCurrentPage("ncr");
-        }, 1500);
+        // Return flag to indicate redirect is needed
+        return { shouldRedirectToNCR: true };
         
         return; // Don't reset form yet, let user complete NCR first
       }
