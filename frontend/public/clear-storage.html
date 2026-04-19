@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear QualiTrack Storage</title>
+</head>
+<body>
+    <h1>Clear QualiTrack Storage</h1>
+    <button onclick="clearStorage()">Clear All Data</button>
+    <div id="message"></div>
+    
+    <script>
+        function clearStorage() {
+            localStorage.removeItem('qualitrack_inspections');
+            localStorage.removeItem('qualitrack_ncr_prefill');
+            localStorage.removeItem('qualitrack.auth.user');
+            
+            document.getElementById('message').innerHTML = 
+                '<p style="color: green;">All QualiTrack data has been cleared from localStorage!</p>' +
+                '<p>You can now close this window and refresh the application.</p>';
+        }
+    </script>
+</body>
+</html>

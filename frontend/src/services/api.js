@@ -47,9 +47,19 @@ function getMockData(path, options = {}) {
     // Calculate stats from stored inspections
     const stats = inspections.reduce((acc, inspection) => {
       acc.total_inspections += 1;
-      acc.total_received += inspection.qtyReceived || 0;
-      acc.total_failed += inspection.qtyFailed || 0;
-      acc.accepted_count += (inspection.qtyPassed || 0) > 0 ? 1 : 0;
+      
+      // Calculate totals from individual items
+      if (inspection.items && Array.isArray(inspection.items)) {
+        inspection.items.forEach(item => {
+          acc.total_received += parseInt(item.qtyReceived) || 0;
+          acc.total_failed += parseInt(item.qtyBad) || 0;
+        });
+      }
+      
+      // Count inspections with any passed items
+      const hasPassedItems = inspection.items && inspection.items.some(item => parseInt(item.qtyGood) > 0);
+      acc.accepted_count += hasPassedItems ? 1 : 0;
+      
       return acc;
     }, {
       total_inspections: 0,
@@ -130,9 +140,19 @@ function getMockData(path, options = {}) {
     
     const stats = receivingInspections.reduce((acc, inspection) => {
       acc.total_inspections += 1;
-      acc.total_received += inspection.qtyReceived || 0;
-      acc.total_failed += inspection.qtyFailed || 0;
-      acc.accepted_count += (inspection.qtyPassed || 0) > 0 ? 1 : 0;
+      
+      // Calculate totals from individual items
+      if (inspection.items && Array.isArray(inspection.items)) {
+        inspection.items.forEach(item => {
+          acc.total_received += parseInt(item.qtyReceived) || 0;
+          acc.total_failed += parseInt(item.qtyBad) || 0;
+        });
+      }
+      
+      // Count inspections with any passed items
+      const hasPassedItems = inspection.items && inspection.items.some(item => parseInt(item.qtyGood) > 0);
+      acc.accepted_count += hasPassedItems ? 1 : 0;
+      
       return acc;
     }, {
       total_inspections: 0,
@@ -199,9 +219,19 @@ function getMockData(path, options = {}) {
     
     const stats = internalInspections.reduce((acc, inspection) => {
       acc.total_inspections += 1;
-      acc.total_received += inspection.qtyReceived || 0;
-      acc.total_failed += inspection.qtyFailed || 0;
-      acc.accepted_count += (inspection.qtyPassed || 0) > 0 ? 1 : 0;
+      
+      // Calculate totals from individual items
+      if (inspection.items && Array.isArray(inspection.items)) {
+        inspection.items.forEach(item => {
+          acc.total_received += parseInt(item.qtyReceived) || 0;
+          acc.total_failed += parseInt(item.qtyBad) || 0;
+        });
+      }
+      
+      // Count inspections with any passed items
+      const hasPassedItems = inspection.items && inspection.items.some(item => parseInt(item.qtyGood) > 0);
+      acc.accepted_count += hasPassedItems ? 1 : 0;
+      
       return acc;
     }, {
       total_inspections: 0,
