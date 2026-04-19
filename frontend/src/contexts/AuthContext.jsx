@@ -6,8 +6,8 @@ const AuthContext = createContext(undefined);
 const STORAGE_KEY = "qualitrack.auth.user";
 
 const demoAccounts = [
-  { role: "Admin", email: "admin@qualitrack.local", password: "Admin123!" },
-  { role: "QC Inspector", email: "inspector@qualitrack.local", password: "Inspect123!" },
+  { role: "Admin", email: "admin@qualitrack.demo", password: "Admin123!" },
+  { role: "QC Inspector", email: "inspector@qualitrack.demo", password: "Inspect123!" },
 ];
 
 export function AuthProvider({ children }) {
