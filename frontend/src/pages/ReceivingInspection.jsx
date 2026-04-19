@@ -29,6 +29,7 @@ export default function ReceivingInspection({ setCurrentPage }) {
     setShowItemForm,
     setShowBarcodeScanner,
     setMessage,
+    setCurrentItem,
     
     // Utilities
     calculateFailureRate,
@@ -139,6 +140,7 @@ export default function ReceivingInspection({ setCurrentPage }) {
             addItem={addItem}
             showBarcodeScanner={showBarcodeScanner}
             setShowBarcodeScanner={setShowBarcodeScanner}
+            setCurrentItem={setCurrentItem}
           />
           
           {/* Barcode Scanner Modal */}

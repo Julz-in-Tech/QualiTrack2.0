@@ -276,6 +276,7 @@ export function useReceivingInspection() {
     setShowItemForm,
     setShowBarcodeScanner,
     setMessage,
+    setCurrentItem,
     
     // Utilities
     calculateFailureRate,

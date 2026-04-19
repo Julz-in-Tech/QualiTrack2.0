@@ -7,7 +7,8 @@ export function ItemFormModal({
   updateItemField,
   addItem,
   showBarcodeScanner,
-  setShowBarcodeScanner
+  setShowBarcodeScanner,
+  setCurrentItem
 }) {
   if (!showItemForm) return null;
 
