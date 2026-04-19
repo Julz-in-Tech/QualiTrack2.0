@@ -20,6 +20,7 @@ export default function ReceivingInspection({ setCurrentPage }) {
     
     // Actions
     updateField,
+    updateItemField,
     addItem,
     removeItem,
     editItem,
