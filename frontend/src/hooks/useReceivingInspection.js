@@ -21,6 +21,7 @@ export function useReceivingInspection() {
   const [currentItem, setCurrentItem] = useState(INITIAL_ITEM);
   const [items, setItems] = useState([]);
   const [showBarcodeScanner, setShowBarcodeScanner] = useState(false);
+  const [shouldRedirectToNCR, setShouldRedirectToNCR] = useState(false);
 
   // Load summary data
   async function loadSummary() {
@@ -109,12 +110,13 @@ export function useReceivingInspection() {
     
     // Update form totals
     const newItems = currentItem.id ? items.map(item => item.id === currentItem.id ? newItem : item) : [...items, newItem];
+    const totalReceived = newItems.reduce((sum, item) => sum + (parseInt(item.qtyReceived) || 0), 0);
     const totalGood = newItems.reduce((sum, item) => sum + (parseInt(item.qtyGood) || 0), 0);
     const totalBad = newItems.reduce((sum, item) => sum + (parseInt(item.qtyBad) || 0), 0);
     
     setForm(prev => ({
       ...prev,
-      qtyReceived: (totalGood + totalBad).toString(),
+      qtyReceived: totalReceived.toString(),
       qtyPassed: totalGood.toString(),
       qtyFailed: totalBad.toString(),
     }));
@@ -125,12 +127,13 @@ export function useReceivingInspection() {
     setItems(updatedItems);
     
     // Recalculate totals
+    const totalReceived = updatedItems.reduce((sum, item) => sum + (parseInt(item.qtyReceived) || 0), 0);
     const totalGood = updatedItems.reduce((sum, item) => sum + (parseInt(item.qtyGood) || 0), 0);
     const totalBad = updatedItems.reduce((sum, item) => sum + (parseInt(item.qtyBad) || 0), 0);
     
     setForm(prev => ({
       ...prev,
-      qtyReceived: (totalGood + totalBad).toString(),
+      qtyReceived: totalReceived.toString(),
       qtyPassed: totalGood.toString(),
       qtyFailed: totalBad.toString(),
     }));
@@ -203,8 +206,8 @@ export function useReceivingInspection() {
           text: `Receiving inspection saved successfully. Overall failure rate: ${calculateFailureRate()}%. Redirecting to NCR form for failed items...`,
         });
 
-        // Return flag to indicate redirect is needed
-        return { shouldRedirectToNCR: true };
+        // Set redirect flag
+        setShouldRedirectToNCR(true);
         
         return; // Don't reset form yet, let user complete NCR first
       }
@@ -279,6 +282,7 @@ export function useReceivingInspection() {
     // Utilities
     calculateFailureRate,
     getProductTrends,
-    loadSummary
+    loadSummary,
+    shouldRedirectToNCR
   };
 }

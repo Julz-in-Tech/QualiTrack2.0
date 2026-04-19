@@ -34,19 +34,20 @@ export default function ReceivingInspection({ setCurrentPage }) {
     // Utilities
     calculateFailureRate,
     getProductTrends,
-    loadSummary
+    loadSummary,
+    shouldRedirectToNCR
   } = useReceivingInspection();
 
   // Handle NCR redirect
   useEffect(() => {
-    if (message?.type === "success" && message?.text?.includes("Redirecting to NCR form")) {
+    if (shouldRedirectToNCR) {
       const timer = setTimeout(() => {
         setCurrentPage("ncr");
       }, 1500);
       
       return () => clearTimeout(timer);
     }
-  }, [message, setCurrentPage]);
+  }, [shouldRedirectToNCR, setCurrentPage]);
 
   return (
     <section style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
